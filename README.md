@@ -1,31 +1,17 @@
 <img src="https://static.octopuscdn.com/constantine/constantine.svg" alt="Octopus Energy mascot, Constantine" width="100" />
 
-# Octopus Frontend code test
-
-In this code test, you'll be asked to:
-
-- Make a simple React app that follows the design in `design.jpg`, consumes the API and makes the front end tests pass. Ideally the app should be responsive.
-
-We've included:
-
-- A sample [Next.js](https://nextjs.org/) project with a Typescript setup for your convenience, but you're welcome to swap it out for another framework if you prefer
-- Some CSS colour variables that match the colours in the design
-- The assets that you will need to complete the design
-
-You're also welcome to write more tests for other parts of the application - but design those however you like.
-
 ## Getting started
 
-First you'll need to install your dependencies. We've used yarn, if you have another preference feel free to remove the lock file and use what you are comfortable with:
+First you'll need to install your dependencies. I have used npm
 
 ```sh
-cd client && yarn
+cd client && npm install
 ```
 
 ## Start the app
 
 ```sh
-yarn dev
+npm run dev
 ```
 
 This will do two things:
@@ -38,33 +24,22 @@ This will do two things:
 You can run tests from the client directory.
 
 ```sh
-cd client && yarn test
+cd client && npm run test
 ```
 
-This should give you two failures:
+## Candidate's notes
 
-```sh
-FAIL test/product.test.js
-    ✕ should be able to increase and decrease product quantity
-    ✕ should be able to add items to the basket
-```
+1. Approach: Decided to get basic components ready such as header, footer and productList page
+2. Added an extra dummy product to showcase the product change on click of a product from Product list to Product details page
+3. I have used styled components as I personally like it and also it was a part of the skills section in the job description
+4. I have used zustand for state management as I find it convenient as compared to redux tool kit etc. But I have experience of using Redux as well
+5. I have made sure to add accessibility features wherever possible as I know how important it is in customer facing applications
+6. I have made sure that existing unit tests are running and have added a bit more tests as well for product-list and product-specs components as well.
+7. I have used AI a little bit when I had come across some issues on state management.
 
-The task is to build the app that passes these tests.
+## if given extra time
 
-## What we're looking for
-
-We would like you to demonstrate your ability to:
-
-- Reason through a programming problem
-- Implement a visual design
-- Implement some user interactions
-- Write code that is easy to understand and extend
-- Write tests that document and safeguard the program's behaviour
-- Use a version control system (e.g. git) to effectively convey intent
-- Write Typescript typings for the components you create, and also the typings for the GraphQL API response
-
-Notes:
-
-- This has not been set up with any type of CSS-in-JS, but if that is something you would like to add, please feel free.
-
-Best of luck!
+1. I would be working on more unit tests
+2. Adding storybook to test components in isolation
+3. Deploying project on Vercel.
+4. Finishing UI to match the provided design
