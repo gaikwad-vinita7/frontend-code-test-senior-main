@@ -11,7 +11,7 @@ type CartStore = {
 
 export const useCartStore = create<CartStore>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       cart: [],
 
       addToCart: (item) => {
@@ -33,27 +33,6 @@ export const useCartStore = create<CartStore>()(
           }
         });
       },
-
-      // addToCart: (item) => {
-      //   set((state) => {
-      //     const existingIndex = state.cart.findIndex(
-      //       (cartItem) => cartItem.id === item.id
-      //     );
-
-      //     const newCart = JSON.parse(JSON.stringify(state.cart));
-
-      //     if (existingIndex !== -1) {
-      //       newCart[existingIndex] = {
-      //         ...newCart[existingIndex],
-      //         quantity: item.quantity,
-      //       };
-      //     } else {
-      //       newCart.push({ ...item });
-      //     }
-
-      //     return { cart: newCart };
-      //   });
-      // },
 
       removeFromCart: (index) =>
         set((state) => {
