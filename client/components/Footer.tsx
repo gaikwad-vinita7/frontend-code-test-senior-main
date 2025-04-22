@@ -4,7 +4,6 @@ const FooterWrapper = styled.footer`
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100%;
   background-color: var(--hemocyanin, #100030);
   color: var(--ice, #f0ffff);
   font-size: 0.75rem;
