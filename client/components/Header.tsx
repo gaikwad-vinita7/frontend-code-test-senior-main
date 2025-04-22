@@ -12,7 +12,7 @@ const HeaderWrapper = styled.nav`
   align-items: center;
   padding: 1.5rem 2rem;
   z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  background: var(--siphon);
 `;
 
 const Logo = styled.img`
