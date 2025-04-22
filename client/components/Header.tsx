@@ -1,5 +1,5 @@
-// components/Header.tsx
 import Link from "next/link";
+import { useCartStore } from "../store/cartStore";
 import { styled } from "styled-components";
 
 const HeaderWrapper = styled.nav`
@@ -12,7 +12,7 @@ const HeaderWrapper = styled.nav`
   align-items: center;
   padding: 1.5rem 2rem;
   z-index: 1000;
-  background: var(--siphon);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 `;
 
 const Logo = styled.img`
@@ -25,7 +25,20 @@ const Logo = styled.img`
   cursor: pointer;
 `;
 
+const Quantity = styled.span`
+  top: -10px;
+  position: absolute;
+  color: var(--ice);
+`;
+
 const Header = () => {
+  const { cart } = useCartStore();
+
+  const totalItems = cart.reduce(
+    (total, item) => total + (item.quantity || 0),
+    0
+  );
+
   return (
     <HeaderWrapper aria-label="Main navigation">
       <Link href="/" aria-label="Go to homepage">
@@ -38,6 +51,9 @@ const Header = () => {
         aria-label="View cart"
       >
         <img src="/basket.svg" alt="Basket" width={28} height={28} />
+        {totalItems > 0 && (
+          <Quantity title="Basket items">{totalItems}</Quantity>
+        )}
       </Link>
     </HeaderWrapper>
   );

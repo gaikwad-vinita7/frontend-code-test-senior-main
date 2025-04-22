@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { styled } from "styled-components";
 import Image from "next/image";
-import { Product } from "../types";
 
-const API_URL = "http://localhost:3001/graphql";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const ListWrapper = styled.ul`
   margin: 0;
@@ -25,9 +24,9 @@ const ListWrapper = styled.ul`
 `;
 
 const ProductList = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>(null);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch(API_URL, {

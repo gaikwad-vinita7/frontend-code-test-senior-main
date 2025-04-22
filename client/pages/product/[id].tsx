@@ -18,9 +18,9 @@ export default ProductPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.params?.id;
-
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   try {
-    const res = await fetch("http://localhost:3001/graphql", {
+    const res = await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
