@@ -1,5 +1,6 @@
 import { render, fireEvent } from "@testing-library/react";
 import ProductDetails from "../components/ProductDetails";
+import NavBar from "../components/Header";
 
 const mockProduct = {
   id: 1,
@@ -13,6 +14,7 @@ const mockProduct = {
 const renderProductPage = () =>
   render(
     <>
+      <NavBar />
       <ProductDetails product={mockProduct} />
     </>
   );

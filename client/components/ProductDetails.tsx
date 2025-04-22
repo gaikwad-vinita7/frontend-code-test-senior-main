@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-
+import { useCartStore } from "../store/cartStore";
 import styled from "styled-components";
 import Button from "./Button";
 
@@ -101,7 +101,19 @@ const ImageContainer = styled.div`
 `;
 
 const ProductDetails = ({ product }: { product: Product }) => {
+  const { cart, addToCart } = useCartStore();
+
   const [qty, setQty] = useState(1);
+
+  useEffect(() => {
+    setQty(() => {
+      const existingItem = cart.find((item) => item.id === product.id);
+      return existingItem?.quantity ?? 1;
+    });
+  }, [product, cart]);
+
+  const increaseQty = () => setQty((prev) => prev + 1);
+  const decreaseQty = () => setQty((prev) => (prev > 1 ? prev - 1 : 1));
 
   const handleAddToCart = () => {
     const cartItem = {
@@ -112,6 +124,8 @@ const ProductDetails = ({ product }: { product: Product }) => {
       img_url: product.img_url,
       quantity: qty,
     };
+
+    addToCart(cartItem);
   };
 
   return (
@@ -134,14 +148,20 @@ const ProductDetails = ({ product }: { product: Product }) => {
 
           <QtyControls>
             <QtyLabel>Qty</QtyLabel>
-            <Button variant="circle">-</Button>
+            <Button onClick={decreaseQty} variant="circle">
+              -
+            </Button>
             <QtyValue title="Current quantity">{qty}</QtyValue>
-            <Button variant="circle">+</Button>
+            <Button onClick={increaseQty} variant="circle">
+              +
+            </Button>
           </QtyControls>
         </PriceQtyWrapper>
 
         <Button onClick={handleAddToCart} fullWidth>
-          Add to cart
+          {cart.some((item) => item.id === product.id)
+            ? "Update cart"
+            : "Add to cart"}
         </Button>
 
         <Description className="mt-8">
